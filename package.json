@@ -1,0 +1,27 @@
+{
+  "name": "resignapp",
+  "version": "1.0.0",
+  "description": "The tool for resign iOS app.",
+  "main": "resignapp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanzhiwei147/iResignApp.git"
+  },
+  "keywords": [
+    "resign",
+    "ipa"
+  ],
+  "author": "arida",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/yanzhiwei147/iResignApp/issues"
+  },
+  "homepage": "https://github.com/yanzhiwei147/iResignApp#readme",
+  "dependencies": {
+    "colors": "1.1.2",
+    "minimist": "1.2.0"
+  }
+}
