@@ -13,10 +13,10 @@ cd $ipasourcefolder
 find -d . -type f -name "*.ipa"> files.txt
 while IFS='' read -r line || [[ -n "$line" ]]; do
 	filename=$(basename "$line" .ipa)
-	echo "Ipa: $filename"
-	#_dev1_______
+	echo "Found ipa: $filename"
+
 	output=$ipadestfolder$filename
-	output+="_signed_dev1.ipa"
+	output+="-resigned.ipa"
 	"$signscript" "$line" "$developer1" "$mobileprovision1" "$output" "$bundleid"
 done < files.txt
 rm files.txt

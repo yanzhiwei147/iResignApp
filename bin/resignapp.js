@@ -6,23 +6,6 @@ const colors = require('colors');
 const SignApp = require('../lib/tools.js');
 const conf = require('minimist')(process.argv.slice(2), {
   boolean: [
-    '7', 'use-7zip',
-    'r', 'replace',
-    'L', 'identities',
-    'v', 'verify-twice',
-    'E', 'entry-entitlement',
-    'f', 'without-fairplay',
-    'p', 'parallel',
-    'w', 'without-watchapp',
-    'u', 'unfair',
-    'M', 'massage-entitlements',
-    'f', 'force-family',
-    's', 'single',
-    'S', 'self-signed-provision',
-    'c', 'clone-entitlements',
-    'u', 'unsigned-provision',
-    'V', 'dont-verify',
-    'B', 'bundleid-access-group'
   ]
 });
 
@@ -42,19 +25,10 @@ colors.setTheme({
 });
 
 const ca = new SignApp(options);
-
-if (conf.identities || conf.L) {
-  ca.getIdentities((err, ids) => {
-    if (err) {
-      console.error(colors.error(err));
-    } else {
-      ids.forEach((id) => {
-        console.log(id.hash, id.name);
-      });
-    }
-  });
-} else if (conf.version) {
+if (conf.version) {
   console.log(packageJson.version);
+} else if (!options.identity || !options.mobileprovision) {
+  console.error(colors.error("Must provid mobileprovision and identity"));
 } else if (conf.h || conf.help || conf._.length === 0) {
   const cmd = process.argv[1].split('/').pop();
   console.error(
@@ -63,7 +37,7 @@ if (conf.identities || conf.L) {
   ${cmd} [--options ...] [input-ipafile]
 
   -b, --bundleid [BUNDLEID]                   Change the bundleid when repackaging
-  -i, --identity [iPhone Distribution:xxx]    Specify hash-id of the identity to use
+  -i, --identity [iPhone Distribution:xxx]    Specify Common name to use
   -k, --keychain [KEYCHAIN]                   Specify alternative keychain file
   -m, --mobileprovision [FILE]                Specify the mobileprovision file to use
   -o, --output [APP.IPA]                      Path to the output IPA filename  
@@ -76,6 +50,17 @@ Example:
 `);
 } else {
   console.log(colors.msg("Begin resign..."));
-  ca.resign();
-  console.log(colors.msg("Finish resign..."));
+  ca.resign( (error, data) => {
+    if (error) {
+      console.error(error, data);
+    }
+    console.log(colors.msg("Finish resign..."));
+
+  }).on('message', (msg) => {
+    console.log(colors.msg(msg));
+  }).on('warning', (msg) => {
+    console.warn(colors.warn('warn'), msg);
+  }).on('error', (msg) => {
+    console.error(colors.msg(msg));
+  });
 }
