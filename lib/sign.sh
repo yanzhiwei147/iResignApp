@@ -3,7 +3,8 @@ SOURCEIPA="$1"
 DEVELOPER="$2"
 MOBILEPROV="$3"
 TARGET="$4"
-BUNDLE="$5"
+KEYCHAIN="$5"
+BUNDLE="$6"
 
 echo "extracting the IPA"
 
@@ -41,7 +42,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
      /usr/libexec/PlistBuddy -c "Set:CFBundleIdentifier $BUNDLE.extra$var" "$line/Info.plist"
      var=$((var+1))
   fi    
-    /usr/bin/codesign --continue -f -s "$DEVELOPER" --entitlements "t_entitlements.plist"  "$line"
+    /usr/bin/codesign --continue -f -s "$DEVELOPER" --entitlements "t_entitlements.plist" --keychain "$KEYCHAIN" "$line"
 done < directories.txt
 
 echo "Creating the Signed IPA"

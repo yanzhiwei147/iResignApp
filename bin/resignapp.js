@@ -40,7 +40,7 @@ if (conf.version) {
   -i, --identity [iPhone Distribution:xxx]    Specify Common name to use
   -k, --keychain [KEYCHAIN]                   Specify alternative keychain file
   -m, --mobileprovision [FILE]                Specify the mobileprovision file to use
-  -o, --output [APP.IPA]                      Path to the output IPA filename  
+  -o, --output [APP.ipa]                      Path to the output IPA filename  
       --version                               Show SignApp version
   [input-ipafile]                             Path to the IPA file to resign
 
