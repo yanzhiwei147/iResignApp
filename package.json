@@ -1,8 +1,11 @@
 {
   "name": "resignapp",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "The tool for resign iOS app.",
-  "main": "resignapp.js",
+  "main": "bin/resignapp.js",
+  "bin": {
+    "resignapp": "bin/resignapp.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +15,10 @@
   },
   "keywords": [
     "resign",
-    "ipa"
+    "ipa",
+    "binary",
+    "ios",
+    "codesign"
   ],
   "author": "arida",
   "license": "GPL-3.0",
