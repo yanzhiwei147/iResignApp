@@ -1,6 +1,6 @@
 {
   "name": "resignapp",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "The tool for resign iOS app.",
   "main": "bin/resignapp.js",
   "bin": {
