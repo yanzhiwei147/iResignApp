@@ -11,7 +11,7 @@ const conf = require('minimist')(process.argv.slice(2), {
 
 const options = {
   file: conf._[0] || 'undefined',
-  outfile: conf.output || conf.o,
+  output: conf.output || conf.o,
   bundleid: conf.bundleid || conf.b,
   identity: conf.identity || conf.i,
   mobileprovision: conf.mobileprovision || conf.m,
@@ -27,8 +27,6 @@ colors.setTheme({
 const ca = new SignApp(options);
 if (conf.version) {
   console.log(packageJson.version);
-} else if (!options.identity || !options.mobileprovision) {
-  console.error(colors.error("Must provid mobileprovision and identity"));
 } else if (conf.h || conf.help || conf._.length === 0) {
   const cmd = process.argv[1].split('/').pop();
   console.error(
@@ -48,6 +46,8 @@ Example:
 
   ${cmd} -i "iPhone Distribution:xxx" -b "com.xx.test" -k ~/Library/Keychains/login.keychain test-app.ipa
 `);
+} else if (!options.identity || !options.mobileprovision) {
+  console.error(colors.error("Must provid mobileprovision and identity"));
 } else {
   console.log(colors.msg("Begin resign..."));
   ca.resign( (error, data) => {
