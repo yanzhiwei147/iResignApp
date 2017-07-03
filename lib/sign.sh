@@ -41,8 +41,16 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
      echo "Changing .appex BundleID with : $BUNDLE.extra$var"
      /usr/libexec/PlistBuddy -c "Set:CFBundleIdentifier $BUNDLE.extra$var" "$line/Info.plist"
      var=$((var+1))
-  fi    
-    /usr/bin/codesign --continue -f -s "$DEVELOPER" --entitlements "t_entitlements.plist" --keychain "$KEYCHAIN" "$line"
+  fi
+
+  entitlements_path="t_entitlements.plist"
+
+  if [[ "$line" == *".framework"* ]]; then
+    BINARYNAME=$(/usr/bin/basename "$line" ".framework")
+    entitlements_path="${BINARYNAME}_entitlements.plist"
+    codesign -d --entitlements :- "$line" > $entitlements_path 2&>/dev/null
+  fi
+    /usr/bin/codesign --continue -f -s "$DEVELOPER" --entitlements "$entitlements_path" --keychain "$KEYCHAIN" "$line"
 done < directories.txt
 
 echo "Creating the Signed IPA"
@@ -55,6 +63,7 @@ rm -rf "extracted"
 rm directories.txt
 rm t_entitlements.plist
 rm t_entitlements_full.plist
+rm *"_entitlements.plist"
 #rm t_entitlements_original.plist
 #rm t_entitlements_application-identifier
 #rm t_entitlements_com.apple.developer.team-identifier
