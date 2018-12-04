@@ -1,34 +1,34 @@
 {
-  "name": "resignapp",
-  "version": "1.3.0",
-  "description": "The tool for resign iOS app.",
-  "main": "bin/resignapp.js",
-  "bin": {
-    "resignapp": "bin/resignapp.js"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yanzhiwei147/iResignApp.git"
-  },
-  "keywords": [
-    "resign",
-    "ipa",
-    "binary",
-    "ios",
-    "codesign"
-  ],
-  "author": "arida",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/yanzhiwei147/iResignApp/issues"
-  },
-  "homepage": "https://github.com/yanzhiwei147/iResignApp#readme",
-  "dependencies": {
-    "colors": "1.1.2",
-    "minimist": "1.2.0",
-    "fs-extra": "1.0.0"
-  }
+    "name": "resignapp",
+    "version": "1.4.0",
+    "description": "The tool for resign iOS app.",
+    "main": "bin/resignapp.js",
+    "bin": {
+        "resignapp": "bin/resignapp.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yanzhiwei147/iResignApp.git"
+    },
+    "keywords": [
+        "resign",
+        "ipa",
+        "binary",
+        "ios",
+        "codesign"
+    ],
+    "author": "arida",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/yanzhiwei147/iResignApp/issues"
+    },
+    "homepage": "https://github.com/yanzhiwei147/iResignApp#readme",
+    "dependencies": {
+        "colors": "1.1.2",
+        "minimist": "1.2.0",
+        "fs-extra": "1.0.0"
+    }
 }
