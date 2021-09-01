@@ -1,6 +1,6 @@
 {
     "name": "resignapp",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "description": "The tool for resign iOS app.",
     "main": "bin/resignapp.js",
     "bin": {
@@ -28,7 +28,7 @@
     "homepage": "https://github.com/yanzhiwei147/iResignApp#readme",
     "dependencies": {
         "colors": "1.1.2",
-        "minimist": "1.2.0",
-        "fs-extra": "1.0.0"
+        "fs-extra": "1.0.0",
+        "minimist": "1.2.5"
     }
 }
